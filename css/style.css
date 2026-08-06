@@ -1,0 +1,617 @@
+/* ============================================================
+   삼성본관 도보권 카페 지도 — style.css
+   Palette: 클래식 로즈골드 핑크 — 고급스러운 블러시/와인 톤온톤 팔레트
+   ============================================================ */
+
+:root {
+  --paper: #FBE9EF;
+  --paper-raised: #FFF6F9;
+  --ink: #3D1F2B;
+  --ink-soft: #7A4A56;
+  --line: #F0C7D3;
+
+  --accent-purple: #B83B5E;       /* 메인 로즈 */
+  --accent-violet-deep: #8C2F49;  /* 딥 와인 */
+  --gold: #C9A227;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --font-display: "Song Myung", "Noto Serif KR", serif;
+  --font-body: "Pretendard", "Noto Sans KR", -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  z-index: 999;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-purple);
+  outline-offset: 2px;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--paper-raised), var(--paper));
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 40px 24px 32px;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--accent-purple);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6vw, 52px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 16px;
+  max-width: 46ch;
+}
+
+.header__rings {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+@media (max-width: 720px) {
+  .header__rings { display: none; }
+}
+
+/* ---------- Controls ---------- */
+
+.controls {
+  padding: 24px 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+  max-width: 640px;
+}
+
+.search input {
+  flex: 1;
+  padding: 13px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-raised);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.search input:focus {
+  border-color: var(--accent-purple);
+  outline: none;
+}
+
+.search button {
+  padding: 0 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.search button:hover {
+  background: var(--accent-purple);
+  transform: translateY(-1px);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border: 1px solid var(--line);
+  background: var(--paper-raised);
+  color: var(--ink-soft);
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip:hover { border-color: var(--accent-purple); color: var(--ink); }
+
+.chip.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.chip--outline.is-active {
+  background: var(--accent-violet-deep);
+  border-color: var(--accent-violet-deep);
+  color: #fff;
+}
+
+.chip--room.is-active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+.chip-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--line);
+  margin: 2px 2px;
+}
+
+.control-row-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.brand-select-wrap select {
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+}
+.brand-select-wrap select:focus {
+  border-color: var(--accent-purple);
+  outline: none;
+}
+
+.brand-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--gold);
+  white-space: nowrap;
+}
+.iw__room .brand-tag {
+  font-size: 9.5px;
+  padding: 1px 6px;
+}
+
+/* ---------- Layout: map + list ---------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  padding: 20px 24px 8px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+.map {
+  width: 100%;
+  height: 520px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--paper-raised);
+}
+
+.map-notice {
+  padding: 32px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.map-notice code {
+  background: var(--line);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.list-panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.list-panel__header h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-family: var(--font-display);
+}
+.list-panel__header h2 span { color: var(--accent-purple); }
+
+.list-panel__hint {
+  margin: 0 0 14px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  background: var(--paper);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.card:hover, .card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(140, 47, 73, 0.16);
+  border-color: var(--accent-purple);
+}
+
+.card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.card__badge {
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.card__walk {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.card__links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 0 6px;
+}
+
+.card__link {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 10.5px;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.card__link:hover,
+.card__link:focus-visible {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+  color: #fff;
+}
+
+.card__icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.card__icon-link:hover,
+.card__icon-link:focus-visible {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+  color: #fff;
+}
+.card__icon-link svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.card__name {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.card__index {
+  color: var(--ink-soft);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.card__room {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 0 6px;
+}
+
+.room-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+.room-tag--certain { background: #3F6B4C; }
+.room-tag--partial { background: var(--gold); color: var(--ink); }
+.room-tag--unclear { background: #8A8A8A; }
+
+.card__room-detail {
+  margin: 0 0 4px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.card__menu {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.card__address {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+  opacity: 0.85;
+}
+
+.list .empty {
+  list-style: none;
+  padding: 24px 8px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+mark {
+  background: rgba(201, 162, 39, 0.32);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+/* ---------- Disclaimer / Footer ---------- */
+
+.disclaimer {
+  padding: 4px 24px 0;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.footer {
+  padding: 28px 24px 40px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+}
+
+/* ---------- Kakao map overlay content ---------- */
+
+.hq-marker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(61, 31, 43, 0.35);
+}
+.hq-marker__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  display: inline-block;
+}
+
+.iw {
+  box-sizing: border-box;
+  width: 236px;
+  max-width: 236px;
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  word-break: keep-all;      /* 한글 단어 단위 줄바꿈 */
+  overflow-wrap: break-word; /* 긴 영문/숫자 강제 줄바꿈 방지용 안전장치 */
+}
+.iw__top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+.iw__category {
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 1;
+  min-width: 0;
+}
+.iw__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.iw__text-btn {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 10.5px;
+  font-weight: 600;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.iw__text-btn:hover,
+.iw__text-btn:focus-visible {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+  color: #fff;
+}
+.iw__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.iw__icon-btn:hover,
+.iw__icon-btn:focus-visible {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+  color: #fff;
+}
+.iw__icon-btn svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+.iw__name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  color: var(--ink);
+}
+.iw__room {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-bottom: 4px;
+}
+.iw__room .room-tag {
+  font-size: 9.5px;
+  padding: 1px 6px;
+}
+.iw__menu {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 3px;
+}
+.iw__address {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+}
+.iw__phone {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
