@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>삼성본관 도보권 휴게음식점 지도 | 카페·편의점·베이커리 전수 가이드</title>
+<meta name="description" content="삼성본관(태평로) 기준 도보 10분 이내 휴게음식점 373곳을 업태·브랜드별로 찾아보세요. 서울시 공공데이터 기반." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#map">지도로 바로가기</a>
+
+<header class="header">
+  <div class="header__inner container">
+    <div class="header__text">
+      <p class="eyebrow">삼성본관 · 태평로 도보권</p>
+      <h1 class="title">도보권 휴게음식점 지도</h1>
+      <p class="subtitle">삼성본관 도보 10분 이내 영업중인 휴게음식점 373곳(공공데이터 기준).<br />업태·브랜드로 필터링해서 찾아보세요 — 방문 전 전화나 지도 앱으로 영업 여부를 재확인하세요.</p>
+    </div>
+
+    <div class="header__rings" aria-hidden="true">
+      <svg viewBox="0 0 220 220" width="220" height="220">
+        <circle cx="110" cy="110" r="100" fill="none" stroke="#3D1F2B" stroke-opacity="0.28" stroke-width="1.4" stroke-dasharray="4 5"/>
+        <circle cx="110" cy="110" r="62" fill="none" stroke="#3D1F2B" stroke-opacity="0.4" stroke-width="1.4" stroke-dasharray="4 5"/>
+        <text x="110" y="4" text-anchor="middle" font-size="10" fill="#3D1F2B" opacity="0.55" font-family="Pretendard, sans-serif">도보 10분</text>
+        <text x="110" y="52" text-anchor="middle" font-size="10" fill="#3D1F2B" opacity="0.6" font-family="Pretendard, sans-serif">도보 5분</text>
+        <circle cx="110" cy="110" r="5" fill="#B83B5E"/>
+        <circle cx="110" cy="110" r="9" fill="none" stroke="#B83B5E" stroke-width="1.4"/>
+        <text x="110" y="132" text-anchor="middle" font-size="11" fill="#B83B5E" font-weight="600" font-family="Song Myung, serif">삼성본관</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="controls container">
+    <form id="search-form" class="search" role="search">
+      <input
+        id="search-input"
+        type="text"
+        name="q"
+        placeholder="이름, 주소, 업태로 검색 (예: 스타벅스, 커피숍, 시청)"
+        autocomplete="off"
+      />
+      <button type="submit">검색</button>
+    </form>
+
+    <div class="chip-row" role="tablist" aria-label="업태 필터">
+      <button class="chip is-active" data-category="전체">전체</button>
+      <button class="chip" data-category="커피숍">커피숍</button>
+      <button class="chip" data-category="다방">다방</button>
+      <button class="chip" data-category="기타 휴게음식점">기타 휴게음식점</button>
+      <button class="chip" data-category="과자점">과자점</button>
+      <button class="chip" data-category="아이스크림">아이스크림</button>
+      <button class="chip" data-category="전통찻집">전통찻집</button>
+      <button class="chip" data-category="패스트푸드">패스트푸드</button>
+      <button class="chip" data-category="편의점">편의점</button>
+      <button class="chip" data-category="백화점">백화점</button>
+      <button class="chip" data-category="일반조리판매">일반조리판매</button>
+      <button class="chip" data-category="푸드트럭">푸드트럭</button>
+    </div>
+
+    <div class="chip-row control-row-split" role="group" aria-label="도보 거리 및 브랜드 필터">
+      <div class="chip-row">
+        <button class="chip chip--outline is-active" data-walk="all">거리 전체</button>
+        <button class="chip chip--outline" data-walk="5">도보 5분 이내</button>
+        <button class="chip chip--outline" data-walk="10">도보 10분 이내</button>
+      </div>
+      <label class="brand-select-wrap">
+        브랜드
+        <select id="brand-select">
+          <option value="전체">전체 브랜드</option>
+          <option value="스타벅스">스타벅스 (15)</option>
+          <option value="CU">CU (13)</option>
+          <option value="GS25">GS25 (13)</option>
+          <option value="세븐일레븐">세븐일레븐 (12)</option>
+          <option value="매머드익스프레스">매머드익스프레스 (6)</option>
+          <option value="이마트24">이마트24 (5)</option>
+          <option value="투썸플레이스">투썸플레이스 (3)</option>
+          <option value="메가MGC커피">메가MGC커피 (3)</option>
+          <option value="이디야">이디야 (2)</option>
+          <option value="공차">공차 (2)</option>
+          <option value="더벤티">더벤티 (2)</option>
+          <option value="커피빈">커피빈 (1)</option>
+          <option value="폴바셋">폴바셋 (1)</option>
+          <option value="할리스">할리스 (1)</option>
+          <option value="던킨도너츠">던킨도너츠 (1)</option>
+          <option value="탐앤탐스">탐앤탐스 (1)</option>
+          <option value="배스킨라빈스">배스킨라빈스 (1)</option>
+          <option value="파스쿠찌">파스쿠찌 (1)</option>
+          <option value="엔제리너스">엔제리너스 (1)</option>
+          <option value="빽다방">빽다방 (1)</option>
+          <option value="벤티프레소">벤티프레소 (1)</option>
+          <option value="테라로사">테라로사 (1)</option>
+          <option value="팀홀튼">팀홀튼 (1)</option>
+          <option value="인텔리젠시아">인텔리젠시아 (1)</option>
+          <option value="독립">독립 (284)</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section class="layout container">
+    <div id="map" class="map"></div>
+
+    <aside class="list-panel">
+      <div class="list-panel__header">
+        <h2>휴게음식점 <span id="result-count">0</span>곳</h2>
+        <p class="list-panel__hint">카드를 클릭하면 지도에서 위치를 보여줘요.</p>
+      </div>
+      <ul id="restaurant-list" class="list"></ul>
+    </aside>
+  </section>
+
+  <p class="disclaimer container">
+    ⚠ 서울 열린데이터광장 "서울시 중구 휴게음식점 인허가 정보"(공공데이터) 중 영업상태 "영업/정상"인 곳만 추려,
+    삼성본관(서울 중구 세종대로 67) 기준 Haversine 직선거리에 도보 감쇠계수(1.25)를 적용해 도보 10분(약 700m) 이내로 필터링했습니다.
+    좌표는 EPSG:5174 좌표계를 WGS84로 변환한 값이며 실제 지도 위치와 다소 차이가 있을 수 있습니다.
+    편의점·백화점 등 카페가 아닌 업태도 원본 데이터 그대로 포함되어 있습니다.
+    <strong>영업시간·매장 운영 여부는 방문 전 반드시 전화나 지도 앱으로 재확인해주세요.</strong>
+  </p>
+</main>
+
+<footer class="footer container">
+  <p>삼성본관 도보권 휴게음식점 지도 · 서울시 공공데이터 기반 · 2026.08.06 기준</p>
+</footer>
+
+<!--
+  카카오맵 JavaScript SDK
+  1) https://developers.kakao.com 에서 애플리케이션을 생성하고 "JavaScript 키"를 발급받으세요. (REST API 키 아님)
+  2) 내 애플리케이션 > 앱 설정 > 플랫폼 > Web 에 로컬 및 배포 도메인을 모두 등록하세요.
+     예) http://localhost:5500, https://your-id.github.io
+  3) 아래 YOUR_KAKAO_JAVASCRIPT_KEY 를 발급받은 키로 교체하세요.
+-->
+<script
+  src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ff00f99607a6b3aadf5e3e8a9e57e42a&autoload=false&libraries=services"
+></script>
+
+<script src="js/data.js"></script>
+<script src="js/map.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
